@@ -65,6 +65,12 @@ DB_FILE_NAME=.wrangler/state/v3/d1/miniflare-D1DatabaseObject/b90c27f7880c9f7a2b
 
 ## drizzle-kit Configuration (for Remote Production)
 
+```:.env
+CLOUDFLARE_ACCOUNT_ID=cdaf0708f65b4c60b3c0c19bc3b56d27
+CLOUDFLARE_DATABASE_ID=ebc09e31-6bba-49a9-bf0c-e9e66ca567c2
+CLOUDFLARE_D1_TOKEN=ACWfgzmTnSzFrJutMYiPaxjqAhBaWhLxuMkbXQQF
+```
+
 `CLOUDFLARE_ACCOUNT_ID`: The UUID included in the top-page URL of the Cloudflare dashboard
 Example: `https://dash.cloudflare.com/cdaf0708f65b4c60b3c0c19bc3b56d27/home/domains`
 

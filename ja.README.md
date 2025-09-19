@@ -65,6 +65,12 @@ DB_FILE_NAME=.wrangler/state/v3/d1/miniflare-D1DatabaseObject/b90c27f7880c9f7a2b
 
 ## drizzle-kitの設定（リモート本番用）
 
+```:.env
+CLOUDFLARE_ACCOUNT_ID=cdaf0708f65b4c60b3c0c19bc3b56d27
+CLOUDFLARE_DATABASE_ID=ebc09e31-6bba-49a9-bf0c-e9e66ca567c2
+CLOUDFLARE_D1_TOKEN=ACWfgzmTnSzFrJutMYiPaxjqAhBaWhLxuMkbXQQF
+```
+
 `CLOUDFLARE_ACCOUNT_ID`: CloudflareダッシュボードのトップページURLに含まれるUUID
 例: `https://dash.cloudflare.com/cdaf0708f65b4c60b3c0c19bc3b56d27/home/domains`
 
