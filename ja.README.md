@@ -1,3 +1,5 @@
+| [English](./README.md) | 日本語 |
+
 ## Quick Reference
 
 ローカルのD1を操作する

@@ -1,3 +1,5 @@
+| English | [日本語](./ja.README.md) |
+
 ## Quick Reference
 
 Operate local D1
