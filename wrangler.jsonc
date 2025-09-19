@@ -29,13 +29,6 @@
 	 * databases, object storage, AI inference, real-time communication and more.
 	 * https://developers.cloudflare.com/workers/runtime-apis/bindings/
 	 */
-	"d1_databases": [
-		{
-			"binding": "DB",
-			"database_name": "cf-next-authjs-drizzle-d1",
-			"database_id": "deadbeef-dead-beef-dead-beefdeadbeef"
-		}
-	]
 	/**
 	 * Environment Variables
 	 * https://developers.cloudflare.com/workers/wrangler/configuration/#environment-variables
