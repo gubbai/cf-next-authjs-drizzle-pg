@@ -1,15 +1,16 @@
-import { getCloudflareContext } from "@opennextjs/cloudflare";
-import { drizzle } from "drizzle-orm/d1";
+import { drizzle } from "drizzle-orm/node-postgres";
+// You can use cache from react to cache the client during the same request
+// this is not mandatory and only has an effect for server components
 import { cache } from "react";
-import * as schema from "./schema/d1";
+import * as schema from "./schema/pg";
+import { Pool } from "pg";
+import { getCloudflareContext } from "@opennextjs/cloudflare";
  
 export const getDb = cache(() => {
-  const { env } = getCloudflareContext();
-  return drizzle(env.DB, { schema });
-});
- 
-// This is the one to use for static routes (i.e. ISR/SSG)
-export const getDbAsync = cache(async () => {
-  const { env } = await getCloudflareContext({ async: true });
-  return drizzle(env.DB, { schema });
+  const pool = new Pool({
+    connectionString: getCloudflareContext().env.PG_URL,
+    // You don't want to reuse the same connection for multiple requests
+    maxUses: 1,
+  });
+  return drizzle({ client: pool, schema });
 });
