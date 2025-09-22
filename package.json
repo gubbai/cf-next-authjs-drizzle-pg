@@ -1,5 +1,5 @@
 {
-	"name": "cf-next-authjs-drizzle-d1",
+	"name": "cf-next-authjs-drizzle-pg",
 	"version": "0.1.0",
 	"private": true,
 	"scripts": {

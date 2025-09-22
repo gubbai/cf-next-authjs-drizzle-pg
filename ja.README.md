@@ -1,25 +1,9 @@
 | [English](./README.md) | 日本語 |
 
-## Quick Reference
-
-ローカルのD1を操作する
-
-```
-pnpm exec drizzle-kit generate --config drizzle-dev.config.ts
-pnpm exec drizzle-kit migrate --config drizzle-dev.config.ts
-```
-
-リモートのD1を操作する
-
-```
-pnpm exec drizzle-kit generate --config drizzle-prod.config.ts
-pnpm exec drizzle-kit migrate --config drizzle-prod.config.ts
-```
-
 ## リポジトリをclone
 
 ```
-git clone https://github.com/gubbai/cf-next-authjs-drizzle-d1 PROJECT_NAME
+git clone https://github.com/gubbai/cf-next-authjs-drizzle-pg PROJECT_NAME
 ```
 
 - `wrangler.jsonc`の`name`
@@ -37,46 +21,14 @@ pnpm dlx auth secret
 生成された値を `.dev.vars` にコピー＆ペーストしてください。
 その後、`.env.local` は削除してかまいません。
 
-## D1を作成
+## PostgreSQLの作成
 
-```
-pnpm dlx wrangler d1 create DB_NAME
-```
-
-```
-✔ Would you like Wrangler to add it on your behalf? › Yes, but let me choose the binding name
-✔ What binding name would you like to use? … DB
-```
-
-```
-pnpm run cf-typegen
-```
-
-## drizzle-kitの設定（ローカル開発用）
-
-```
-pnpm dlx wrangler d1 execute DB_NAME --command "select 0;"
-```
-
-実行すると`.wrangler/state/v3/d1/`に`.sqlite`ファイルが生成されるので、以下のように`.env`に記述します（`.dev.vars`ではない）。
-
+PostgresのDBを作成し、同じpostgresの接続文字列を`.env`, `.dev.vars`に記述します。
 
 ```.env
-DB_FILE_NAME=.wrangler/state/v3/d1/miniflare-D1DatabaseObject/b90c27f7880c9f7a2b5f0fe8bf5088692b81a9c8993059b4d26037967f789b26.sqlite
+DATABASE_URL=postgresql://...
 ```
 
-## drizzle-kitの設定（リモート本番用）
-
-```:.env
-CLOUDFLARE_ACCOUNT_ID=cdaf0708f65b4c60b3c0c19bc3b56d27
-CLOUDFLARE_DATABASE_ID=ebc09e31-6bba-49a9-bf0c-e9e66ca567c2
-CLOUDFLARE_D1_TOKEN=ACWfgzmTnSzFrJutMYiPaxjqAhBaWhLxuMkbXQQF
+```.dev.vars
+PG_URL=postgresql://...
 ```
-
-`CLOUDFLARE_ACCOUNT_ID`: CloudflareダッシュボードのトップページURLに含まれるUUID
-例: `https://dash.cloudflare.com/cdaf0708f65b4c60b3c0c19bc3b56d27/home/domains`
-
-`CLOUDFLARE_DATABASE_ID`: `wrangler.jsonc`の`database_id`
-
-`CLOUDFLARE_D1_TOKEN`: https://dash.cloudflare.com/profile/api-tokens で生成。
-'Custom Token'で'Permissions'は`Account`, `D1`, `Edit`（必要に応じてAccount以外でも可）
