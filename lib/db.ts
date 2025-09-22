@@ -14,3 +14,12 @@ export const getDb = cache(() => {
   });
   return drizzle({ client: pool, schema });
 });
+
+export const getDbAsync = cache(async () => {
+  const pool = new Pool({
+    connectionString: (await getCloudflareContext({ async: true })).env.PG_URL,
+    // You don't want to reuse the same connection for multiple requests
+    maxUses: 1,
+  });
+  return drizzle({ client: pool, schema });
+});
